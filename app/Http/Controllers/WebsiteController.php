@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\PurchaseTransaction;
 use App\Models\Store;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class WebsiteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        session(['user-ip'=>$request->ip()]);
         $stores = Store::get();
         foreach ($stores as $store) {
             $store->logo_url = Storage::disk('public')->url($store->logo);
@@ -32,29 +34,34 @@ class WebsiteController extends Controller
 
 
     public function addTransaction($id,Request $request){
-//        $product = PurchaseTransaction::with('product')->find($id);
         $updatePurchase = PurchaseTransaction::select('*')
             ->where('product_id', $id)
             ->limit(1)
             ->first();
+        $product= Product::select('*')
+            ->where('id', $id)
+            ->limit(1)
+            ->first();
+        $product->numberOfTransaction+=1;
+        $product->save();
+
 //        dd($updatePurchase);
-        $request->ip = $request->ip();
-        if($updatePurchase && $updatePurchase->user_ip){
+        if($updatePurchase && session('user-ip') == $updatePurchase->user_ip){
             $updatePurchase->product_id=$id;
             $updatePurchase->quantity += 1;
             $updatePurchase->save();
         } else{
             $newPurchase = new PurchaseTransaction;
             $newPurchase->product_id =$id;
-            $storeId= Product::select('*')
-                ->where('id', $id)
-                ->limit(1)
-                ->first();
-            $newPurchase->store_id =$storeId->store_id;
-            $newPurchase->user_ip =$request->ip;
+            $newPurchase->user_ip =session('user-ip');
             $newPurchase->quantity =1;
             $newPurchase->save();
         }
         return redirect()->back();
+    }
+    public function search(Request $request){
+        $keyword = $request->input('search');
+        $products = Product::select('*')->where('name', 'LIKE', "%$keyword%")->get();
+        return view('website.searchForProductsByName')->with('products',$products);
     }
 }

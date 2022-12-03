@@ -12,18 +12,14 @@ class PurshaseTransactionsController extends Controller
 {
     public function index()
     {
-        $productsPurchase = PurchaseTransaction::with('store')
-            ->with('product')
+        $productsPurchase = PurchaseTransaction::with('product.store')
             ->select('*')
             ->get();
-
-//        $productsPurchase = Store::with('purchase_transactions')
-//            ->with('products')
-//            ->select('*')
-//            ->get();
-//        dd($productsPurchase)-toArray();
-//        $productsPurchase = Product::with('products')->with('purchase_transactions')->select('*')->get();
-
         return view('dashboard.purchaseTransaction.index')->with('productsPurchase', $productsPurchase);
+    }
+    public function getTotalReport()
+    {
+        $products = Product::with('store')->select('*')->get();
+        return view('dashboard.purchaseTransaction.report')->with('products', $products);
     }
 }

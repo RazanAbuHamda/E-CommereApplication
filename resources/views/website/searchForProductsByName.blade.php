@@ -1,5 +1,7 @@
 @include('includes.websiteIncludes.header')
+
 <div id="testimonials" class="testimonial_section">
+    <h1 style="text-align: center">The result of searching</h1>
     <div class="container-fluid">
         <?php $count = 1?>
         @foreach ($products as $product)
@@ -11,7 +13,7 @@
                             <div class="testimonial_inner_matter">
                                 <img src="{{url('public/image/products/product-'.$count.'.jpg')}}">
                                 <h5 class="wow fadeInDown animated">Product Name:   {{$product->name}}</h5>
-                                    <h5 class="wow fadeInDown animated">Product Description:   {{$product->description}}</h5>
+                                <h5 class="wow fadeInDown animated">Product Description:   {{$product->description}}</h5>
                                 @if($product->flag)
                                     <h5 class="wow fadeInDown animated">Base Price:   {{$product->basePrice}}</h5>
                                 @else
@@ -27,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <?php $count+=1?>
+                <?php $count+=1?>
         @endforeach
     </div>
 </div>

@@ -8,6 +8,23 @@
             <div class="card-body">
                 <form method="POST" action="{{url('product/data')}}" enctype="multipart/form-data">
                     @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Product name</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"
+                            ><i class="bx bx-user"></i
+                                ></span>
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                id="basic-icon-default-fullname"
+                                placeholder="Product name"
+                                aria-label="Product name"
+                                aria-describedby="basic-icon-default-fullname2"
+                            />
+                        </div></div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-icon-default-fullname">Product description</label>
                         <div class="input-group input-group-merge">

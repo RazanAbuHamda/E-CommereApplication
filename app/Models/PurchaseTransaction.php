@@ -34,7 +34,5 @@ class PurchaseTransaction extends Model
     public function product () {
         return $this->belongsTo('App\Models\Product');
     }
-    public function store () {
-        return $this->belongsTo('App\Models\Store');
-    }
+
 }

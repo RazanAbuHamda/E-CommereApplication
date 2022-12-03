@@ -14,6 +14,7 @@ class ProductController extends Controller
         return view('dashboard.products.createProduct')->with('stores', $stores);
     }
     public function store (Request $request) {
+        $product_name = $request->input('name');
         $product_description = $request->input('description');
         $product_basePrice = $request->input('basePrice');
         $product_discountPrice = $request->input('discountPrice');
@@ -21,6 +22,8 @@ class ProductController extends Controller
         $product_storeId = $request->input('store_id');
 
         $product = new Product;
+        $product->numberOfTransaction=0;
+        $product->name = $product_name;
         $product->description = $product_description;
         $product->basePrice = $product_basePrice;
         $product->discountPrice = $product_discountPrice;
@@ -40,6 +43,7 @@ class ProductController extends Controller
     }
 
     public function update (Request $request, $id) {
+        $product_name = $request->input('name');
         $product_description = $request->input('description');
         $product_basePrice = $request->input('basePrice');
         $product_discountPrice = $request->input('discountPrice');
@@ -47,6 +51,8 @@ class ProductController extends Controller
         $product_storeId = $request->input('store_id');
 
         $product = Product::find($id);
+        $product->numberOfTransaction=0;
+        $product->name = $product_name;
         $product->description = $product_description;
         $product->basePrice = $product_basePrice;
         $product->discountPrice = $product_discountPrice;

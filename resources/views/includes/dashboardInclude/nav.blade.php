@@ -138,14 +138,23 @@
                     </li>
                 </ul>
                 </li>
-
-                <li class="menu-item active">
-                    <a href="{{url('list/Transaction')}}" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-table"></i>
-                        <div data-i18n="Analytics">Purchase Transactions</div>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="Account Settings">Purchase Transactions</div>
                     </a>
-                </li>
-
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="{{url('list/Transaction')}}" class="menu-link">
+                                <div data-i18n="Account">List Purchase Transactions</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{url('website/report')}}" class="menu-link">
+                                <div data-i18n="Notifications">Total Report</div>
+                            </a>
+                        </li>
+                    </ul>
             </ul>
         </aside>
         <!-- / Menu -->

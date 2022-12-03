@@ -8,6 +8,7 @@
                 <table class="table table-hover table-bordered">
                     <thead>
                     <tr>
+                        <th>Product name</th>
                         <th>Product description</th>
                         <th>Product base price</th>
                         <th>Product discount price</th>
@@ -21,6 +22,7 @@
                     <tbody>
                     @foreach ($products as $product)
                         <tr>
+                            <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->basePrice }}</td>
                             <td>{{ $product->discountPrice }}</td>

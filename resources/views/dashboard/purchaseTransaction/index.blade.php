@@ -15,8 +15,6 @@
                         <th>Product store_id</th>
                         <th>Product quantity</th>
                         <th>TimeStamp of Purchase</th>
-                        <th>Edit</th>
-                        <th>DELETE</th>
 
                     </tr>
                     </thead>
@@ -25,7 +23,7 @@
                         <tr>
 
                             @php $product = $productPurchase->product@endphp
-                            @php $store = $productPurchase->store@endphp
+                            @php $store = $productPurchase->product->store@endphp
                             <td>{{$store->name}}</td>
                             <td>{{ $product->id }}</td>
                             @php $flag = $product->flag @endphp
@@ -49,53 +47,6 @@
                             <td>{{$store->id}}</td>
                             <td>{{$productPurchase->quantity}}</td>
                             <td>{{$productPurchase->created_at}}</td>
-                            <td>
-                            </td>
-
-                            {{--                            @php $transactions = $productPurchase->purchase_transactions@endphp--}}
-                            {{--                            @if(!empty($transactions))--}}
-                            {{--                                @foreach($transactions as $transaction)--}}
-                            {{--                                    <td>{{$transaction->created_at}}</td>--}}
-                            {{--                                @endforeach--}}
-                            {{--                            @endif--}}
-                            {{--                            @php--}}
-                            {{--                                $products = $productPurchase->products;--}}
-                            {{--                            @endphp--}}
-                            {{--                            @foreach($products as $product)--}}
-                            {{--                                <td>{{ $product->id }}</td>--}}
-                            {{--                                <td>{{$product->store_id}}</td>--}}
-                            {{--                                @php $flag = $product->flag @endphp--}}
-                            {{--                                @if($flag == 1)--}}
-                            {{--                                    <td>--}}
-                            {{--                                        @php--}}
-                            {{--                                            $purchasePrice = $product->basePrice;--}}
-                            {{--                                            $flag = 'Base Price';--}}
-                            {{--                                        @endphp--}}
-                            {{--                                        {{$purchasePrice}}</td>--}}
-                            {{--                                @else--}}
-                            {{--                                    <td>--}}
-                            {{--                                        @php--}}
-                            {{--                                            $purchasePrice = $product->discountPrice;--}}
-                            {{--                                         $flag = 'Discount Price';--}}
-                            {{--                                        @endphp--}}
-                            {{--                                        {{$purchasePrice}}</td>--}}
-                            {{--                                @endif--}}
-                            {{--                            @endforeach--}}
-
-
-                            {{--                                            <td>--}}
-                            {{--                                                @if ($productPurchase->products->purchase_transaction->deleted_at)--}}
-                            {{--                                                    <form action="{{ URL('product/restore/'.$product->id) }}" method="POST">--}}
-                            {{--                                                        @csrf--}}
-                            {{--                                                        <button type="submit" class="btn btn-success">Restore</button>--}}
-                            {{--                                                    </form>--}}
-                            {{--                                                @else--}}
-                            {{--                                                    <form action="{{ URL('product/delete/'.$product->id) }}" method="POST">--}}
-                            {{--                                                        @csrf--}}
-                            {{--                                                        <button type="submit" class="btn btn-danger">Remove</button>--}}
-                            {{--                                                    </form>--}}
-                            {{--                                                @endif--}}
-                            {{--                                            </td>--}}
                         </tr>
                     @endforeach
                     </tbody>

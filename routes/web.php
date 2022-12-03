@@ -44,11 +44,15 @@ Route::get('product/edit/{id}', 'App\Http\Controllers\DashboardControllers\Produ
 Route::get('navEditProduct', 'App\Http\Controllers\DashboardControllers\ProductController@edProductNav');
 
 //purchase Routes
+
 Route::post('website/addTransaction/{id}', 'App\Http\Controllers\WebsiteController@addTransaction');
 Route::get('list/Transaction', 'App\Http\Controllers\DashboardControllers\PurshaseTransactionsController@index');
+Route::get('website/report', 'App\Http\Controllers\DashboardControllers\PurshaseTransactionsController@getTotalReport');
+
 
 
 //website routes
 Route::get('website/index', 'App\Http\Controllers\WebsiteController@index');
 Route::get('website/storeProducts/{id}', 'App\Http\Controllers\WebsiteController@showStoreProducts');
+Route::get('website/search', 'App\Http\Controllers\WebsiteController@search');
 
