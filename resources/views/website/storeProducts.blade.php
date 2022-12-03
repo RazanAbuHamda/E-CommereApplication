@@ -9,7 +9,7 @@
                     <div class="item">
                         <div class="col-sm-12">
                             <div class="testimonial_inner_matter">
-                                <img src="{{url('public/image/products/product-'.$count.'.jpg')}}">
+                                <img src="{{asset('image/products/product-'.$count.'.jpg')}}">
                                 <h5 class="wow fadeInDown animated">Product Name:   {{$product->name}}</h5>
                                     <h5 class="wow fadeInDown animated">Product Description:   {{$product->description}}</h5>
                                 @if($product->flag)
